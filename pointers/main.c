@@ -4,6 +4,15 @@
  * int(*foo)(int) => travel right from foo - nothing - start traveling left - thus foo is a ptr to function....
  * int(*foo(int))(int) => travel right from foo - foo is a function taking int - travel left - returning a pointer to a
  * function - travel right - taking an int and - * travel left - return an int.
+ *
+ * In normal case we would use typedefs:
+ * -------------------------------------
+ * typedef int(*ArrPtr)[5];
+ * typedef ArrPtr(*RetFuncPtr)(const int * const);
+ * RetFuncPtr foo(const int * const) { return 0; }
+ *
+ * typedef RetFuncPtr(*FooPtr)(const int * const);
+ * const FooPtr p0 = foo;
  */
 
 int(*(*foo(const int* const p))(const int * const))[5] {return 0;}
@@ -13,7 +22,7 @@ int main() {
     {
         int (*(*(*p0)(const int * const))(const int * const))[5] = foo;
         
-        typedef int (*(*(*HaveFun)(const int * const))(const int * const))[5];
+        typedef int (*(*(* const HaveFun)(const int * const))(const int * const))[5];
         HaveFun p1 = foo;
         
         printf("%p   %p\n", p0, p1);
