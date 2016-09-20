@@ -5,3 +5,5 @@ target/
 *.dll
 *.exe
 *.out
+*.swp
+.*.swp
