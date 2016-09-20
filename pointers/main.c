@@ -2,8 +2,8 @@
 
 /*
  * int(*foo)(int) => travel right from foo - nothing - start traveling left - thus foo is a ptr to function....
- * int(*foo(int))(int) => travel right from foo - foo is a function taking int - travel left - returning a pointer to a function - travel right - taking an int and -
- * travel left - return an int.
+ * int(*foo(int))(int) => travel right from foo - foo is a function taking int - travel left - returning a pointer to a
+ * function - travel right - taking an int and - * travel left - return an int.
  */
 
 int(*(*foo(const int* const p))(const int * const))[5] {return 0;}
@@ -37,9 +37,10 @@ int main() {
     /* Notes:
      * (*p_arr_start)[i] will not compile. *p_arr_start refers to an integer, which cannot be subscripted.
      * (*p_arr)[i] will compile because *p_arr refers to an array and then we are subscripting it.
-     * p_arr[i] (== *(p_arr + i)) is however UB unless you are only reading it in which case you are reading garbage location.
-     *                            i.e. wrongly treating that location as an array (unless i == 0).
-     * p_arr[i][i] is UB. p_arr[0][i] is well defined == *(*(p_arr + 0) + i) == *(*p_arr + i) or (*p_arr)[i] == *(a + i) == a[i]
+     * p_arr[i] (== *(p_arr + i)) is however UB unless you are only reading it in which case you are reading garbage
+     *                            location, i.e. wrongly treating that location as an array (unless i == 0).
+     * p_arr[i][i] is UB. p_arr[0][i] is well defined == *(*(p_arr + 0) + i) == *(*p_arr + i) or (*p_arr)[i] ==
+     *                                                                                      *(a + i) == a[i]
      */
     printf("\n");
 }
