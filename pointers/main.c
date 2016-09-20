@@ -29,8 +29,8 @@ int main() {
     for(int i = 0; i < 5; ++i) printf("%d ", a[i]);
     printf("\n");
     
-    int(*p_arr)[5] = &a; /* Note the LHS == &a[0] => pointer to first int in possibly an array of ints. */
-    int* p_arr_start = a; /* Note the LHS is different => pointer to 1st array in possibly an array of array of ints. */
+    int(*p_arr)[5] = &a; /* Note the RHS => pointer to 1st array in possibly an array of array of ints. */
+    int* p_arr_start = a; /* Note the RHS == &a[0] => pointer to first int in possibly an array of ints. */
     
     printf("%p, %p, %p, %p\n", p_arr_start, p_arr, p_arr_start + 1, p_arr + 1);
     for(int i = 0; i < 5; ++i) printf("%d %d %d\n", p_arr_start[i], p_arr[0][i], (*p_arr)[i]);

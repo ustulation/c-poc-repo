@@ -1,9 +1,11 @@
-objs = main.o
+objs = target/main.o
 
-pointers: $(objs)
-	cc -o pointers $(objs)
+target/pointers: $(objs)
+	cc -o target/pointers $(objs)
 
-main.o: main.c
-	cc -std=c99 -O2 -s -c main.c -o main.o
+target/main.o: main.c
+	cc -std=c99 -O2 -s -c main.c -o target/main.o
+
+.PHONY: clean
 clean:
-	-rm -f pointers $(objs)
+	-rm -f target/*
